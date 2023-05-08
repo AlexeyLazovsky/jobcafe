@@ -3,55 +3,44 @@ package com.jobcafe.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class JobsPage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public JobsPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public boolean isPageLoaded() {
-        return driver.getTitle().equals("Jobs");
+        return driver.getTitle().equals("JobCafe");
     }
 
-    public void enterLocation(String location) {
-        driver.findElement(By.id("location")).sendKeys(location);
+    public void enterSearchLocation(String location) {
+        WebElement searchLocation = driver.findElement(By.id("searchLocation"));
+        searchLocation.sendKeys(location);
     }
 
-    public void enterPosition(String position) {
-        driver.findElement(By.id("position")).sendKeys(position);
+    public void clickSearchButton() {
+        WebElement searchButton = driver.findElement(By.xpath("//button[contains(text(), 'Search')]"));
+        searchButton.click();
     }
 
-    public void enterCompany(String company) {
-        driver.findElement(By.id("company")).sendKeys(company);
+    public void searchJobsByLocation(String location) {
+        enterSearchLocation(location);
+        clickSearchButton();
     }
 
-    public void submitSearchForm() {
-        driver.findElement(By.cssSelector(".btn-primary")).click();
+    public void selectJobType(String jobType) {
+        Select jobTypeDropdown = new Select(driver.findElement(By.id("jobType")));
+        jobTypeDropdown.selectByVisibleText(jobType);
     }
 
-    public boolean isSearchResultsDisplayed() {
-        WebElement searchResults = driver.findElement(By.cssSelector(".search-results"));
-        return searchResults.isDisplayed();
-    }
-
-    public boolean isNoResultsMessageDisplayed() {
-        WebElement noResultsMessage = driver.findElement(By.cssSelector(".alert-warning"));
-        return noResultsMessage.isDisplayed();
-    }
-
-    public void resetSearchForm() {
-        driver.findElement(By.cssSelector(".btn-secondary")).click();
-    }
-
-    public boolean isSearchFormReset() {
-        WebElement locationInput = driver.findElement(By.id("location"));
-        WebElement positionInput = driver.findElement(By.id("position"));
-        WebElement companyInput = driver.findElement(By.id("company"));
-
-        return locationInput.getText().isEmpty() && positionInput.getText().isEmpty() && companyInput.getText().isEmpty();
+    public void searchJobsByLocationAndType(String location, String jobType) {
+        enterSearchLocation(location);
+        selectJobType(jobType);
+        clickSearchButton();
     }
 
 }

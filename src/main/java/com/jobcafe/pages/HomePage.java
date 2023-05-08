@@ -3,48 +3,37 @@ package com.jobcafe.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 
-    private WebDriver driver;
+    private static final String HOME_PAGE_URL = "http://167.99.178.249:3000/";
+
+    private final WebDriver driver;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void open() {
-        driver.get("http://167.99.178.249:3000/");
+        driver.get(HOME_PAGE_URL);
     }
 
     public boolean isPageLoaded() {
-        return driver.getTitle().equals("JobCafe");
+        WebElement getStartedButton = driver.findElement(By.xpath("//*[@id=\"heroCarousel\"]/div"));
+        return getStartedButton.isDisplayed();
+    }
+    public AboutUsPage clickAboutUsOption() {
+        WebElement aboutUsLink = driver.findElement(By.xpath("//a[contains(@href, '/about')]"));
+        aboutUsLink.click();
+        return new AboutUsPage(driver);
     }
 
-    public boolean isLogoDisplayed() {
-        WebElement logo = driver.findElement(By.cssSelector(".navbar-brand img"));
-        return logo.isDisplayed();
-    }
 
-    public boolean isComingSoonDisplayed() {
-        WebElement comingSoon = driver.findElement(By.cssSelector(".hero-banner img"));
-        return comingSoon.isDisplayed();
-    }
 
-    public void clickAboutUs() {
-        driver.findElement(By.linkText("About Us")).click();
-    }
-
-    public void clickJobs() {
-        driver.findElement(By.linkText("Jobs")).click();
-    }
-
-    public void enterLoginCredentials(String username, String password) {
-        driver.findElement(By.id("username")).sendKeys(username);
-        driver.findElement(By.id("password")).sendKeys(password);
-    }
-
-    public void submitLoginForm() {
-        driver.findElement(By.cssSelector(".btn-primary")).click();
-    }
 
 }
+
+
+////*[@id="heroCarousel"]/div
