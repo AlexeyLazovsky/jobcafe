@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
-
     private static final String HOME_PAGE_URL = "http://167.99.178.249:3000/";
 
     private final WebDriver driver;
@@ -20,20 +19,15 @@ public class HomePage {
         driver.get(HOME_PAGE_URL);
     }
 
-    public boolean isPageLoaded() {
-        WebElement getStartedButton = driver.findElement(By.xpath("//*[@id=\"heroCarousel\"]/div"));
-        return getStartedButton.isDisplayed();
+    public FindJobPage clickFindJobOption() {
+        WebElement findJobButton = driver.findElement(By.xpath("//*[@id=\"3\"]"));
+        findJobButton.click();
+        return new FindJobPage(driver);
     }
+
     public AboutUsPage clickAboutUsOption() {
-        WebElement aboutUsLink = driver.findElement(By.xpath("//a[contains(@href, '/about')]"));
-        aboutUsLink.click();
+        WebElement aboutUsButton = driver.findElement(By.xpath("//a[@href='/about']"));
+        aboutUsButton.click();
         return new AboutUsPage(driver);
     }
-
-
-
-
 }
-
-
-////*[@id="heroCarousel"]/div
