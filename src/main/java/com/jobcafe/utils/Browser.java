@@ -12,6 +12,6 @@ public class Browser {
     }
 
     public static void tearDown() {
-        // Method to quit the driver
+
     }
 }
