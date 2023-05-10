@@ -77,8 +77,6 @@ public class JobSearchTest extends BaseTest {
         }
         JobSearchResultPage  NewYorkResults =  findJobPage.searchByLocation("New York");
 
-
-
     }
     }
 
