@@ -45,6 +45,11 @@ public class JobSearchResultPage {
         resetButton.click();
     }
 
+    public boolean isNoResultsFoundDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement noResultsElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"jobs\"]/div/div/div[1]/div/div[1]/span[1]")));
+        return noResultsElement.getText().equals("No results found!");
+    }
 
 
 }

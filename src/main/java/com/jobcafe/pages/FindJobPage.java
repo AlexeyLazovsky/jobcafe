@@ -42,6 +42,14 @@ public class FindJobPage {
         return new JobSearchResultPage(driver);
     }
 
+    public JobSearchResultPage searchByPosition(String position) {
+        WebElement positionInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[1]"));
+        positionInput.sendKeys(position);
+        positionInput.submit();
+        return new JobSearchResultPage(driver);
+    }
+
+
     public void clearSearch() {
         WebElement searchInput = driver.findElement(By.xpath("//input[@name='q']"));
         searchInput.clear();
@@ -50,4 +58,79 @@ public class FindJobPage {
     public WebElement getSidebarElement() {
         return driver.findElement(By.xpath("//div[@class='sidebar']"));
     }
+
+    public void enterPosition(String position) {
+        WebElement positionInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[1]"));
+        positionInput.sendKeys(position);
+    }
+
+    public void enterLocation(String location) {
+        WebElement locationInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[2]"));
+        locationInput.sendKeys(location);
+    }
+
+    public void enterCompany(String company) {
+        WebElement companyInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[3]"));
+        companyInput.sendKeys(company);
+    }
+
+    public void enterDescription(String description) {
+        WebElement descriptionInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[4]"));
+        descriptionInput.sendKeys(description);
+    }
+
+    public String getPositionInputText() {
+        WebElement positionInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[1]"));
+        return positionInput.getAttribute("value");
+    }
+
+    public String getLocationInputText() {
+        WebElement locationInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[2]"));
+        return locationInput.getAttribute("value");
+    }
+
+    public String getCompanyInputText() {
+        WebElement companyInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[3]"));
+        return companyInput.getAttribute("value");
+    }
+
+    public String getDescriptionInputText() {
+        WebElement descriptionInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[4]"));
+        return descriptionInput.getAttribute("value");
+    }
+
+
+    public String getPositionInputValue() {
+        WebElement positionInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[1]"));
+        return positionInput.getAttribute("value");
+    }
+
+    public String getLocationInputValue() {
+        WebElement locationInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[2]"));
+        return locationInput.getAttribute("value");
+    }
+
+    public String getCompanyInputValue() {
+        WebElement companyInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[3]"));
+        return companyInput.getAttribute("value");
+    }
+
+    public String getDescriptionInputValue() {
+        WebElement descriptionInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[4]"));
+        return descriptionInput.getAttribute("value");
+    }
+
+    public void populateCompanyInput(String company) {
+        WebElement companyInput = driver.findElement(By.xpath("//*[@id='jobs']/div/div/div[2]/div/div/form/input[3]"));
+        companyInput.sendKeys(company);
+    }
+
+
+
+    public void populateDescriptionInput(String company) {
+        WebElement companyInput = driver.findElement(By.xpath("//*[@id=\"jobs\"]/div/div/div[2]/div/div/form/input[4]"));
+        companyInput.sendKeys(company);
+    }
+
+
 }

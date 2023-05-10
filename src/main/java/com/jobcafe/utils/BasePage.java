@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 public class BasePage {
     protected WebDriver driver;
 
-    // Default constructor is added to prevent the error you encountered
+
     public BasePage() {}
 
     public BasePage(WebDriver driver) {
@@ -17,5 +17,5 @@ public class BasePage {
         return true;
     }
 
-    // Other common methods can be added here
+
 }
